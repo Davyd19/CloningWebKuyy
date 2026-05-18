@@ -12,49 +12,31 @@
 </head>
 <body>
     <?php $activeNav = $activeNav ?? 'home'; ?>
-    <div class="shell">
-        <aside class="sidebar">
-            <a class="brand" href="<?= base_url('/') ?>">
-                <span class="brand-mark">K</span>
-                <span>KUYY!</span>
+    <div class="app-shell">
+        <header class="app-topbar">
+            <a class="location-link" href="<?= base_url('pick/location-filter') ?>">
+                <span><?= esc($eyebrow ?? 'Activities near') ?></span>
+                <strong><?= esc($heading ?? 'Your location') ?> <span class="chevron">v</span></strong>
             </a>
-            <nav class="side-nav">
-                <a class="<?= $activeNav === 'home' ? 'active' : '' ?>" href="<?= base_url('/') ?>">Home</a>
-                <a class="<?= $activeNav === 'following' ? 'active' : '' ?>" href="<?= base_url('following') ?>">Following</a>
-                <a class="<?= $activeNav === 'search' ? 'active' : '' ?>" href="<?= base_url('search') ?>">Search</a>
-                <a class="<?= $activeNav === 'chat' ? 'active' : '' ?>" href="<?= base_url('chat') ?>">Chat</a>
-                <a class="<?= $activeNav === 'notifications' ? 'active' : '' ?>" href="<?= base_url('notifications') ?>">Notifications</a>
-                <a class="<?= $activeNav === 'profile' ? 'active' : '' ?>" href="<?= base_url('profile') ?>">Profile</a>
-            </nav>
-            <a class="host-button" href="<?= base_url('add-activity') ?>">Host Activity</a>
-        </aside>
+            <div class="topbar-actions">
+                <a class="round-action" href="<?= base_url('search') ?>" aria-label="Search">Search</a>
+                <a class="round-action" href="#filters" aria-label="Filters">Filter</a>
+            </div>
+        </header>
 
-        <div class="workspace">
-            <header class="desktop-topbar">
-                <a class="location-link" href="<?= base_url('pick/location-filter') ?>">
-                    <span>Activities near</span>
-                    <strong>Your location</strong>
-                </a>
-                <form class="top-search" action="<?= base_url('search') ?>" method="get">
-                    <input type="search" name="q" value="<?= esc($filters['q'] ?? $query ?? '') ?>" placeholder="Search activities, hosts, venues">
-                </form>
-                <a class="icon-button" href="<?= base_url('search') ?>">Search</a>
-                <a class="icon-button" href="#filters">Filters</a>
-                <a class="avatar-link" href="<?= base_url('profile') ?>">D</a>
-            </header>
+        <main class="content">
+            <?= $this->renderSection('content') ?>
+        </main>
 
-            <main class="content">
-                <?= $this->renderSection('content') ?>
-            </main>
-        </div>
+        <a class="floating-host" href="<?= base_url('add-activity') ?>" aria-label="Host activity">+</a>
     </div>
 
     <nav class="mobile-nav">
-        <a class="<?= $activeNav === 'home' ? 'active' : '' ?>" href="<?= base_url('/') ?>">Home</a>
-        <a class="<?= $activeNav === 'following' ? 'active' : '' ?>" href="<?= base_url('following') ?>">Following</a>
-        <a class="<?= $activeNav === 'chat' ? 'active' : '' ?>" href="<?= base_url('chat') ?>">Chat</a>
-        <a class="<?= $activeNav === 'notifications' ? 'active' : '' ?>" href="<?= base_url('notifications') ?>">Alerts</a>
-        <a class="<?= $activeNav === 'profile' ? 'active' : '' ?>" href="<?= base_url('profile') ?>">Profile</a>
+        <a class="<?= $activeNav === 'home' ? 'active' : '' ?>" href="<?= base_url('/') ?>"><span>Home</span></a>
+        <a class="<?= $activeNav === 'following' ? 'active' : '' ?>" href="<?= base_url('following') ?>"><span>Follow</span></a>
+        <a class="<?= $activeNav === 'chat' ? 'active' : '' ?>" href="<?= base_url('chat') ?>"><span>Chat</span></a>
+        <a class="<?= $activeNav === 'notifications' ? 'active' : '' ?>" href="<?= base_url('notifications') ?>"><span>Alerts</span></a>
+        <a class="<?= $activeNav === 'profile' ? 'active' : '' ?>" href="<?= base_url('profile') ?>"><span>D</span></a>
     </nav>
 
     <script>

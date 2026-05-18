@@ -1,11 +1,3 @@
-<section class="feed-header">
-    <div>
-        <span class="eyebrow"><?= esc($eyebrow ?? 'Activities near') ?></span>
-        <h1><?= esc($heading ?? 'Your location') ?></h1>
-    </div>
-    <a class="btn secondary" href="<?= base_url('pick/location-filter') ?>">Change Location</a>
-</section>
-
 <div class="chip-row">
     <?php foreach ($categories ?? [] as $category): ?>
         <?php

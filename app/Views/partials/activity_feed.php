@@ -26,12 +26,11 @@ foreach ($activities ?? [] as $activity) {
                 <a class="activity-row" href="<?= base_url('activity/' . $activityId) ?>">
                     <img src="<?= esc($activity['image_url']) ?>" alt="<?= esc($activity['title']) ?>">
                     <div>
-                        <div class="row-kicker"><?= esc($activity['category_name'] ?? 'Activity') ?></div>
                         <h3><?= esc($activity['title']) ?></h3>
                         <p><?= date('H:i', strtotime($activity['activity_date'])) ?> WIB <span>|</span> <?= esc($activity['location_name']) ?></p>
                         <p class="joined">Joined by <strong><?= esc($activity['author_name']) ?></strong></p>
+                        <p class="slot-inline"><?= $slots ?> slots remaining</p>
                     </div>
-                    <div class="slot-pill"><?= $slots ?> slots remaining</div>
                 </a>
             <?php endforeach; ?>
         </div>
