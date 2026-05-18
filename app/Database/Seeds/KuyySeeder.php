@@ -23,6 +23,13 @@ class KuyySeeder extends Seeder
             ['id' => 9, 'name' => 'Badminton', 'slug' => 'badminton', 'icon' => 'BD'],
             ['id' => 10, 'name' => 'Running', 'slug' => 'running', 'icon' => 'RN'],
             ['id' => 11, 'name' => 'Pilates', 'slug' => 'pilates', 'icon' => 'PL'],
+            ['id' => 12, 'name' => 'Squash', 'slug' => 'squash', 'icon' => 'SQ'],
+            ['id' => 13, 'name' => 'Art', 'slug' => 'art', 'icon' => 'AR'],
+            ['id' => 14, 'name' => 'Travel', 'slug' => 'travel', 'icon' => 'TR'],
+            ['id' => 15, 'name' => 'Music', 'slug' => 'music', 'icon' => 'MS'],
+            ['id' => 16, 'name' => 'Social', 'slug' => 'social', 'icon' => 'SC'],
+            ['id' => 17, 'name' => 'Others', 'slug' => 'others', 'icon' => 'OT'],
+            ['id' => 18, 'name' => 'Service', 'slug' => 'service', 'icon' => 'SV'],
         ];
 
         $this->db->table('categories')->insertBatch($categories);
