@@ -170,6 +170,28 @@ class Home extends BaseController
 
     public function joinActivity($id)
     {
+        $rules = [
+            'name' => 'required|min_length[2]|max_length[120]',
+            'email' => 'required|valid_email',
+            'phone' => 'required|min_length[8]|max_length[20]',
+        ];
+
+        if (! $this->validate($rules)) {
+            $activity = $this->activity((int) $id);
+
+            if (! $activity) {
+                throw PageNotFoundException::forPageNotFound('Activity not found');
+            }
+
+            return view('pages/registration', [
+                'title' => 'Registration Details - KUYY!',
+                'activity' => $activity,
+                'activeNav' => 'home',
+                'errors' => $this->validator->getErrors(),
+                'input' => $this->request->getPost(),
+            ]);
+        }
+
         try {
             (new ActivityModel())->incrementAttendees((int) $id);
         } catch (\Throwable $e) {
