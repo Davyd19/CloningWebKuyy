@@ -32,11 +32,11 @@
     </div>
 
     <nav class="mobile-nav">
-        <a class="<?= $activeNav === 'home' ? 'active' : '' ?>" href="<?= base_url('/') ?>"><span>Home</span></a>
-        <a class="<?= $activeNav === 'following' ? 'active' : '' ?>" href="<?= base_url('following') ?>"><span>Follow</span></a>
-        <a class="<?= $activeNav === 'chat' ? 'active' : '' ?>" href="<?= base_url('chat') ?>"><span>Chat</span></a>
-        <a class="<?= $activeNav === 'notifications' ? 'active' : '' ?>" href="<?= base_url('notifications') ?>"><span>Alerts</span></a>
-        <a class="<?= $activeNav === 'profile' ? 'active' : '' ?>" href="<?= base_url('profile') ?>"><span>D</span></a>
+        <a class="<?= $activeNav === 'home' ? 'active' : '' ?>" href="<?= base_url('/') ?>"><i class="nav-icon home-icon"></i><span>Home</span></a>
+        <a class="<?= $activeNav === 'following' ? 'active' : '' ?>" href="<?= base_url('following') ?>"><i class="nav-icon follow-icon"></i><span>Follow</span></a>
+        <a class="<?= $activeNav === 'chat' ? 'active' : '' ?>" href="<?= base_url('chat') ?>"><i class="nav-icon chat-icon"></i><span>Chat</span></a>
+        <a class="<?= $activeNav === 'notifications' ? 'active' : '' ?>" href="<?= base_url('notifications') ?>"><i class="nav-icon alert-icon"></i><span>Alerts</span></a>
+        <a class="<?= $activeNav === 'profile' ? 'active' : '' ?>" href="<?= base_url('profile') ?>"><i class="nav-icon profile-icon"></i><span>D</span></a>
     </nav>
 
     <script>

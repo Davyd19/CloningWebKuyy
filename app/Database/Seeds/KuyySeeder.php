@@ -8,8 +8,10 @@ class KuyySeeder extends Seeder
 {
     public function run()
     {
-        $this->db->table('activities')->emptyTable();
-        $this->db->table('categories')->emptyTable();
+        $this->db->disableForeignKeyChecks();
+        $this->db->table('activities')->truncate();
+        $this->db->table('categories')->truncate();
+        $this->db->enableForeignKeyChecks();
 
         $categories = [
             ['id' => 1, 'name' => 'All', 'slug' => 'all', 'icon' => 'ALL'],

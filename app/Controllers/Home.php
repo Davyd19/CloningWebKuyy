@@ -215,11 +215,11 @@ class Home extends BaseController
         try {
             $activities = (new ActivityModel())->getActivitiesWithCategory($filters);
         } catch (\Throwable $e) {
-            $activities = $this->mockActivities();
+            $activities = $this->filterMockActivities($this->mockActivities(), $filters);
         }
 
         if (empty($activities)) {
-            $activities = $this->mockActivities();
+            $activities = $this->filterMockActivities($this->mockActivities(), $filters);
         }
 
         return [
@@ -272,6 +272,40 @@ class Home extends BaseController
         }
 
         return $dates;
+    }
+
+    private function filterMockActivities(array $activities, array $filters): array
+    {
+        return array_values(array_filter($activities, static function (array $activity) use ($filters): bool {
+            if (! empty($filters['category']) && $filters['category'] !== 'all') {
+                if (($activity['category_slug'] ?? '') !== $filters['category']) {
+                    return false;
+                }
+            }
+
+            if (! empty($filters['date'])) {
+                if (date('Y-m-d', strtotime($activity['activity_date'])) !== $filters['date']) {
+                    return false;
+                }
+            }
+
+            if (! empty($filters['q'])) {
+                $needle = strtolower(trim((string) $filters['q']));
+                $haystack = strtolower(implode(' ', [
+                    $activity['title'] ?? '',
+                    $activity['description'] ?? '',
+                    $activity['location_name'] ?? '',
+                    $activity['author_name'] ?? '',
+                    $activity['category_name'] ?? '',
+                ]));
+
+                if ($needle !== '' && ! str_contains($haystack, $needle)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }));
     }
 
     private function mockActivities(): array
